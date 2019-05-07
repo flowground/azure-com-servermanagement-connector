@@ -1,0 +1,59 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "pattern": "[a-zA-Z0-9]+"
+        },
+        "gatewayName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$"
+        },
+        "requestBody": {
+            "description": "Collection of parameters for operations on a gateway resource.",
+            "properties": {
+                "location": {
+                    "description": "Location of the resource.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Collection of properties.",
+                    "properties": {
+                        "upgradeMode": {
+                            "description": "The upgradeMode property gives the flexibility to gateway to auto upgrade itself. If properties value not specified, then we assume upgradeMode = Automatic.",
+                            "enum": [
+                                "Manual",
+                                "Automatic"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "upgradeMode"
+                            }
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-client-flatten": true
+                },
+                "tags": {
+                    "description": "Resource tags.",
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "pattern": "[a-zA-Z0-9]+"
+        },
+        "nodeName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$"
+        },
+        "session": {
+            "required": true,
+            "type": "string"
+        },
+        "pssession": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The parameters to a PowerShell script execution command.",
+            "properties": {
+                "properties": {
+                    "description": "Collection of properties.",
+                    "properties": {
+                        "command": {
+                            "description": "Script to execute.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

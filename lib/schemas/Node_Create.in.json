@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "pattern": "[a-zA-Z0-9]+"
+        },
+        "nodeName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$"
+        },
+        "requestBody": {
+            "description": "Parameter collection for operations on arm node resource.",
+            "properties": {
+                "location": {
+                    "description": "Location of the resource.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Collection of properties.",
+                    "properties": {
+                        "connectionName": {
+                            "description": "myhost.domain.com",
+                            "type": "string"
+                        },
+                        "gatewayId": {
+                            "description": "Gateway ID which will manage this node.",
+                            "type": "string"
+                        },
+                        "password": {
+                            "description": "Password associated with user name.",
+                            "format": "password",
+                            "type": "string"
+                        },
+                        "userName": {
+                            "description": "User name to be used to connect to node.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-client-flatten": true
+                },
+                "tags": {
+                    "description": "Resource tags.",
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

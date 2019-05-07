@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "pattern": "[a-zA-Z0-9]+"
+        },
+        "nodeName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

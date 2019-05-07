@@ -1,0 +1,545 @@
+{
+    "title": "ServerManagement",
+    "description": "REST API for Azure Server Management Service.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/servermanagement/2016-07-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Gateway_List": {
+            "main": "./lib/actions/Gateway_List.js",
+            "title": "Returns gateways in a subscription.",
+            "description": "Returns gateways in a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_List": {
+            "main": "./lib/actions/Node_List.js",
+            "title": "Lists nodes in a subscription.",
+            "description": "Lists nodes in a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_ListForResourceGroup": {
+            "main": "./lib/actions/Gateway_ListForResourceGroup.js",
+            "title": "Returns gateways in a resource group.",
+            "description": "Returns gateways in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_ListForResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_Delete": {
+            "main": "./lib/actions/Gateway_Delete.js",
+            "title": "Deletes a gateway from a resource group.",
+            "description": "Deletes a gateway from a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_Get": {
+            "main": "./lib/actions/Gateway_Get.js",
+            "title": "Gets a gateway.",
+            "description": "Gets a gateway.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_Update": {
+            "main": "./lib/actions/Gateway_Update.js",
+            "title": "Updates a gateway belonging to a resource group.",
+            "description": "Updates a gateway belonging to a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_Create": {
+            "main": "./lib/actions/Gateway_Create.js",
+            "title": "Creates or updates a ManagementService gateway.",
+            "description": "Creates or updates a ManagementService gateway.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_GetProfile": {
+            "main": "./lib/actions/Gateway_GetProfile.js",
+            "title": "Gets a gateway profile.",
+            "description": "Gets a gateway profile.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_GetProfile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_RegenerateProfile": {
+            "main": "./lib/actions/Gateway_RegenerateProfile.js",
+            "title": "Regenerate a gateway's profile",
+            "description": "Regenerate a gateway's profile",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_RegenerateProfile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Gateway_Upgrade": {
+            "main": "./lib/actions/Gateway_Upgrade.js",
+            "title": "Upgrades a gateway.",
+            "description": "Upgrades a gateway.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Gateway_Upgrade.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_ListForResourceGroup": {
+            "main": "./lib/actions/Node_ListForResourceGroup.js",
+            "title": "Lists nodes in a resource group.",
+            "description": "Lists nodes in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_ListForResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_Delete": {
+            "main": "./lib/actions/Node_Delete.js",
+            "title": "deletes a management node",
+            "description": "deletes a management node",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_Get": {
+            "main": "./lib/actions/Node_Get.js",
+            "title": "Gets a management node.",
+            "description": "Gets a management node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_Update": {
+            "main": "./lib/actions/Node_Update.js",
+            "title": "Updates a management node.",
+            "description": "Updates a management node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Node_Create": {
+            "main": "./lib/actions/Node_Create.js",
+            "title": "Creates or updates a management node.",
+            "description": "Creates or updates a management node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Node_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Session_Delete": {
+            "main": "./lib/actions/Session_Delete.js",
+            "title": "Deletes a session for a node.",
+            "description": "Deletes a session for a node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Session_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Session_Get": {
+            "main": "./lib/actions/Session_Get.js",
+            "title": "Gets a session for a node.",
+            "description": "Gets a session for a node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Session_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Session_Create": {
+            "main": "./lib/actions/Session_Create.js",
+            "title": "Creates a session for a node.",
+            "description": "Creates a session for a node.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Session_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_ListSession": {
+            "main": "./lib/actions/PowerShell_ListSession.js",
+            "title": "Gets a list of the active sessions.",
+            "description": "Gets a list of the active sessions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_ListSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_GetCommandStatus": {
+            "main": "./lib/actions/PowerShell_GetCommandStatus.js",
+            "title": "Gets the status of a command.",
+            "description": "Gets the status of a command.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_GetCommandStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_UpdateCommand": {
+            "main": "./lib/actions/PowerShell_UpdateCommand.js",
+            "title": "Updates a running PowerShell command with more data.",
+            "description": "Updates a running PowerShell command with more data.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_UpdateCommand.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_CreateSession": {
+            "main": "./lib/actions/PowerShell_CreateSession.js",
+            "title": "Creates a PowerShell session.",
+            "description": "Creates a PowerShell session.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_CreateSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_CancelCommand": {
+            "main": "./lib/actions/PowerShell_CancelCommand.js",
+            "title": "Cancels a PowerShell command.",
+            "description": "Cancels a PowerShell command.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_CancelCommand.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_InvokeCommand": {
+            "main": "./lib/actions/PowerShell_InvokeCommand.js",
+            "title": "Creates a PowerShell script and invokes it.",
+            "description": "Creates a PowerShell script and invokes it.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_InvokeCommand.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PowerShell_TabCompletion": {
+            "main": "./lib/actions/PowerShell_TabCompletion.js",
+            "title": "Gets tab completion values for a command.",
+            "description": "Gets tab completion values for a command.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PowerShell_TabCompletion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

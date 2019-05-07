@@ -1,0 +1,78 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "pattern": "[a-zA-Z0-9]+"
+        },
+        "nodeName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$"
+        },
+        "session": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameter collection for creation and other operations on sessions.",
+            "properties": {
+                "properties": {
+                    "description": "Collection of properties",
+                    "properties": {
+                        "EncryptionCertificateThumbprint": {
+                            "description": "Encryption certificate thumbprint.",
+                            "type": "string"
+                        },
+                        "credentialDataFormat": {
+                            "description": "Credential data format.",
+                            "enum": [
+                                "RsaEncrypted"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "credentialDataFormat"
+                            }
+                        },
+                        "password": {
+                            "description": "Encrypted Password associated with user name.",
+                            "type": "string"
+                        },
+                        "retentionPeriod": {
+                            "description": "Session retention period.",
+                            "enum": [
+                                "Session",
+                                "Persistent"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "retentionPeriod"
+                            }
+                        },
+                        "userName": {
+                            "description": "Encrypted User name to be used to connect to node.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-client-flatten": true
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
